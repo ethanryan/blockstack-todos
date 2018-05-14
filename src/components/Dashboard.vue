@@ -30,19 +30,25 @@
           <br>
           {{ todos.length > 0 || todos.length === 0 ? todos.length : 'no todos yet'}}
           <br>
-          {{ this.data ? 'we have data!!!!' : 'no data yet'}}
+          <!-- {{ this.data ? 'we have data!!!!' : 'no data yet'}} -->
 
           <br>
-          {{this.message ? this.message : "no message..."}}
+          <!-- {{this.message ? this.message : "no message..."}} -->
 
-          <div v-if="loading">
+          <!-- <div v-if="loading">
              Loading...
           </div>
           <div v-else>
             {{message}}
-          </div>
+          </div> -->
 
-          <ul class="list-group">
+          <br></br>
+          <!-- trying to add spinner here for now... -->
+
+          {{ todos.length > 0 || todos.length === 0 ? todos.length : 'no todos yet'}}
+          <br>
+          {{ todos.length ? todos.length : 'no todos yet'}}
+          <ul class="list-group" v-if="todos.length">
             <li v-for="todo in todos"
               class="list-group-item"
               :class="{completed: todo.completed}"
@@ -55,6 +61,8 @@
                 href="#">X</a>
             </li>
           </ul>
+          <p v-else-if="todos.length">No todos!</p>
+          <p v-else>spinner...</p>
 
         </div>
       </div>
@@ -125,7 +133,7 @@ export default {
 }
 console.log('default is: ', this.default)
 console.log('default.props is: ', this.default.props)
-console.log('data is: ', this.data)
+// console.log('data is: ', this.data)
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
