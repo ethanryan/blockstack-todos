@@ -43,6 +43,21 @@
           </div> -->
 
           <br></br>
+
+          {{ this.loading ? 'LOADING-1' : 'not loading 1...'}}
+          <br></br>
+          {{ this.loading ? 'LOADING-2' : 'not loading 2...'}}
+          <br></br>
+          {{ this.loading ? 'LOADING-3' : 'not loading 3...'}}
+          <br></br>
+          <!-- <span v-show="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> -->
+          <br></br>
+          <span v-if="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate">LOADDDDDDDINFFFFGGG</span>
+          <br></br>
+          <!-- <i v-show="loading" class="fa fa-spinner fa-spin">loadinnnnnnnnnggggg</i> -->
+          <br></br>
+          <!-- <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> -->
+          <br></br>
           <!-- trying to add spinner here for now... -->
 
           {{ todos.length > 0 || todos.length === 0 ? todos.length : 'no todos yet'}}
@@ -62,6 +77,7 @@
             </li>
           </ul>
           <p v-else-if="todos.length">No todos!</p>
+          <p v-if="! todos.length">SPINNER HERE</p>
           <p v-else>spinner...</p>
 
         </div>
@@ -76,13 +92,14 @@ var STORAGE_FILE = 'todos.json'
 export default {
   name: 'dashboard',
   props: ['user'],
-  message: 'Hello Vue!',
-  loading: true,
+  // message: 'Hello Vue!',
+  // loading: true, // adding this....
   data () {
     return {
       blockstack: window.blockstack,
       todos: [],
       todo: '',
+      loading: true, // adding this....
       uidCount: 0
     }
   },
@@ -96,8 +113,16 @@ export default {
       deep: true
     }
   },
+  beforeMount () {
+    // console.log('up here..... default.props is: ', this.default.props)
+
+    console.log('0. beforeMount, this.todos is: ', this.todos) // trying this........
+    console.log('0. beforeMount, this.data is: ', this.data) // trying this........
+  },
   mounted () {
+    console.log('0. mounted, calling this.fetchData()....')
     this.fetchData()
+    console.log('1. mounted, called this.fetchData()....')
   },
   methods: {
     addTodo () {
@@ -113,6 +138,8 @@ export default {
     },
 
     fetchData () {
+      console.log('00. fetchData called!')
+      console.log('00. fetchData called! todos is::: ', this.todos)
       const blockstack = this.blockstack
       const decrypt = true
       blockstack.getFile(STORAGE_FILE, decrypt)
@@ -123,6 +150,7 @@ export default {
         })
         this.uidCount = todos.length
         this.todos = todos
+        this.loading = false // adding this....
       })
     },
 
@@ -132,7 +160,8 @@ export default {
   }
 }
 console.log('default is: ', this.default)
-console.log('default.props is: ', this.default.props)
+console.log('down here..... default.props is: ', this.default.props)
+console.log('this.data is: ', this.data)
 // console.log('data is: ', this.data)
 </script>
 
