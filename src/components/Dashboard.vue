@@ -52,7 +52,9 @@
           <br></br>
           <!-- <span v-show="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> -->
           <br></br>
-          <span v-if="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate">LOADDDDDDDINFFFFGGG</span>
+          <span v-if="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+          <br></br>
+          <span v-if="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
           <br></br>
           <!-- <i v-show="loading" class="fa fa-spinner fa-spin">loadinnnnnnnnnggggg</i> -->
           <br></br>
