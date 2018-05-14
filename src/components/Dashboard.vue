@@ -25,6 +25,23 @@
             </div>
           </form>
 
+          <!-- trying to add spinner here for now... -->
+          {{ todos.length > 0 || todos.length === 0 ? todos.length : 'no todos yet'}}
+          <br>
+          {{ todos.length > 0 || todos.length === 0 ? todos.length : 'no todos yet'}}
+          <br>
+          {{ this.data ? 'we have data!!!!' : 'no data yet'}}
+
+          <br>
+          {{this.message ? this.message : "no message..."}}
+
+          <div v-if="loading">
+             Loading...
+          </div>
+          <div v-else>
+            {{message}}
+          </div>
+
           <ul class="list-group">
             <li v-for="todo in todos"
               class="list-group-item"
@@ -51,6 +68,8 @@ var STORAGE_FILE = 'todos.json'
 export default {
   name: 'dashboard',
   props: ['user'],
+  message: 'Hello Vue!',
+  loading: true,
   data () {
     return {
       blockstack: window.blockstack,
@@ -104,6 +123,9 @@ export default {
     }
   }
 }
+console.log('default is: ', this.default)
+console.log('default.props is: ', this.default.props)
+console.log('data is: ', this.data)
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
